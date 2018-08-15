@@ -1,0 +1,129 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Order API",
+    "version": "1.0"
+  },
+  "host": "example.com",
+  "paths": {
+    "/order": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "summary": "This will submit orders. ",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "validateOnly",
+            "type": "string",
+            "default": "yes"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/orders"
+            },
+            "x-examples": {
+              "application/json": {
+                "customerid": "ut laboris esse",
+                "shippingaddress": "pariatur in deserunt anim",
+                "orderheaderdata": {
+                  "number": "ex cupidatat proident aliqua ullamco",
+                  "date": "cillum Duis"
+                },
+                "items": [
+                  {
+                    "itemid": "in anim",
+                    "name": "Ut",
+                    "price": "dolor Excepteur et exercitation magna",
+                    "size": "adipisicing elit amet cillum"
+                  }
+                ],
+                "orderid": "minim nisi labore"
+              }
+            }
+          }
+        ],
+        "x-flow": "orderApi-postOrder"
+      },
+      "options": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "headers": {
+              "allow": {
+                "type": "string",
+                "default": "OPTIONS, POST"
+              }
+            }
+          }
+        },
+        "summary": "Displays the methods that are allowed",
+        "x-flow": "orderApi-optionsOrder"
+      }
+    }
+  },
+  "definitions": {
+    "orders": {
+      "type": "object",
+      "title": "orders",
+      "properties": {
+        "customerid": {
+          "type": "string"
+        },
+        "shippingaddress": {
+          "type": "string"
+        },
+        "orderheaderdata": {
+          "type": [
+            "string",
+            "object"
+          ],
+          "properties": {
+            "number": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemid": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "orderid": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
